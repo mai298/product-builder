@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from "react";
-import { formInputList, productList } from "./components/data";
+import { colors, formInputList, productList } from "./components/data";
 import ProductCard from "./components/ProductCard";
 import Modal from "./components/ui/Modal";
 import Button from "./components/ui/Button";
@@ -7,6 +7,7 @@ import Input from "./components/ui/InputData";
 import { IProduct } from "./components/interfaces";
 import { productValidation } from "./validation";
 import ErrorMsg from "./components/ErrorMsg";
+import CircleColor from "./components/CircleColor";
 
 function App() {
   const defaultProductObj = {
@@ -93,6 +94,22 @@ function App() {
     </div>
   ));
 
+
+
+
+
+
+
+
+
+  const renderProductColor =
+  colors.map((color) => (
+      <CircleColor key={color} color={color} />
+    ));
+
+
+
+
   return (
     <main className="container">
       <Button className="bg-indigo-700 hover:bg-indigo-800" onClick={openModal}>
@@ -108,6 +125,11 @@ function App() {
         <Modal isOpen={isOpen} closeModal={close} title="ADD A NEW PRODUCT">
           <form className="space-y-3" onSubmit={submitHandler}>
             {renderFormInputList}
+            <div className="flex items-center my-4 space-x-2">
+                          {renderProductColor}
+
+            </div>
+
             <div className="flex items-center space-x-3">
               <Button
                 className="bg-indigo-700 hover:bg-indigo-800"
