@@ -23,6 +23,7 @@ function App() {
   };
   const [product, setProduct] = useState<IProduct>(defaultProductObj);
   const [isOpen, setIsOpen] = useState(false);
+  const [tempColor, setTempColor] = useState<string[]>([]);
   const [errors, setErrors] = useState({
     title: "",
     desc: "",
@@ -94,21 +95,10 @@ function App() {
     </div>
   ));
 
-
-
-
-
-
-
-
-
-  const renderProductColor =
-  colors.map((color) => (
-      <CircleColor key={color} color={color} />
-    ));
-
-
-
+  const renderProductColor = colors.map((color) => (
+    <CircleColor key={color} color={color} onClick={() => setTempColor(prev=>[...prev,color])} />
+  ));
+console.log(tempColor)
 
   return (
     <main className="container">
@@ -126,8 +116,7 @@ function App() {
           <form className="space-y-3" onSubmit={submitHandler}>
             {renderFormInputList}
             <div className="flex items-center my-4 space-x-2">
-                          {renderProductColor}
-
+              {renderProductColor}
             </div>
 
             <div className="flex items-center space-x-3">
