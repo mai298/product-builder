@@ -96,7 +96,14 @@ function App() {
   ));
 
   const renderProductColor = colors.map((color) => (
-    <CircleColor key={color} color={color} onClick={() => setTempColor(prev=>[...prev,color])} />
+    <CircleColor key={color} color={color} onClick={() => {
+      if(tempColor.includes(color)){
+        setTempColor(prev=>prev.filter(item=>item!==color));
+        return;
+      }
+      setTempColor(prev=>[...prev,color]);
+      
+    }} />
   ));
 console.log(tempColor)
 
@@ -117,6 +124,14 @@ console.log(tempColor)
             {renderFormInputList}
             <div className="flex items-center my-4 space-x-2">
               {renderProductColor}
+            </div>
+
+
+            <div className="flex items-center my-4 space-x-2">
+              {tempColor.map(color=>(
+                <span key={color} className="p-1 mr-1 mb-1 text-xs rounded-md text-white" style={{background:color}}>{color}</span>
+
+              ))}
             </div>
 
             <div className="flex items-center space-x-3">
