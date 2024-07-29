@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from "react";
-import { colors, formInputList, productList } from "./components/data";
+import { caregories, colors, formInputList, productList } from "./components/data";
 import ProductCard from "./components/ProductCard";
 import Modal from "./components/ui/Modal";
 import Button from "./components/ui/Button";
@@ -34,6 +34,8 @@ function App() {
     imgUrl: "",
     price: "",
   });
+
+  const [selectedCategory, setSelectedCategory] = useState(caregories[3])
 
   function openModal() {
     setIsOpen(true);
@@ -70,7 +72,7 @@ function App() {
       return;
     }
 
-    setProducts(prev=>[{...product,id:uuid(),colors:tempColor},...prev])
+    setProducts(prev=>[{...product,id:uuid(),colors:tempColor,category:selectedCategory},...prev])
   setProduct(defaultProductObj);
   setTempColor([]);
 closeModal();
@@ -131,7 +133,7 @@ console.log(tempColor)
         <Modal isOpen={isOpen} closeModal={close} title="ADD A NEW PRODUCT">
           <form className="space-y-3" onSubmit={submitHandler}>
             {renderFormInputList}
-            <Select/>
+            <Select selected={selectedCategory} setSelected={setSelectedCategory}/>
 
             <div className="flex items-center my-4 space-x-2">
               {renderProductColor}
@@ -146,9 +148,9 @@ console.log(tempColor)
             </div>
 
 
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-3 ">
               <Button
-                className="bg-indigo-700 hover:bg-indigo-800"
+                className="bg-indigo-700  hover:bg-indigo-800"
                 type="submit"
               >
                 Submit
