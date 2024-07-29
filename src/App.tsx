@@ -9,6 +9,7 @@ import { productValidation } from "./validation";
 import ErrorMsg from "./components/ErrorMsg";
 import CircleColor from "./components/CircleColor";
 import { v4 as uuid } from "uuid";
+import Select from "./components/ui/Select";
 
 
 function App() {
@@ -141,7 +142,7 @@ console.log(tempColor)
 
               ))}
             </div>
-
+          <Select/>
 
 
             <div className="flex items-center space-x-3">
