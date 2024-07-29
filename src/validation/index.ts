@@ -15,9 +15,7 @@ export const productValidation = (product: {
       price: "",
     };
 
-  const validUrl = /^(ftp|http|https):\/\/[^ ]+\.(jpeg|jpg|gif|png|svg)$/.test(
-    product.imgUrl
-  );
+  const validUrl = /^(ftp|http|https):\/\/[^ "]+$/.test(product.imgUrl);
 
   if (
     !product.title.trim() ||
@@ -39,13 +37,8 @@ export const productValidation = (product: {
     errors.imgUrl = "valid image url is required!";
   }
 
-
-  if (
-                    !product.price.trim() ||
-                   
-                    isNaN(Number(product.price))
-                  ) {
-                    errors.price = "valid price is required!";
-                  }
+  if (!product.price.trim() || isNaN(Number(product.price))) {
+    errors.price = "valid price is required!";
+  }
   return errors;
 };

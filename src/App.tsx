@@ -8,6 +8,8 @@ import { IProduct } from "./components/interfaces";
 import { productValidation } from "./validation";
 import ErrorMsg from "./components/ErrorMsg";
 import CircleColor from "./components/CircleColor";
+import { v4 as uuid } from "uuid";
+
 
 function App() {
   const defaultProductObj = {
@@ -22,6 +24,7 @@ function App() {
     },
   };
   const [product, setProduct] = useState<IProduct>(defaultProductObj);
+  const[products,setProducts]=useState<IProduct[]>(productList);
   const [isOpen, setIsOpen] = useState(false);
   const [tempColor, setTempColor] = useState<string[]>([]);
   const [errors, setErrors] = useState({
@@ -65,13 +68,18 @@ function App() {
       setErrors(errors);
       return;
     }
-  };
+
+    setProducts(prev=>[{...product,id:uuid(),colors:tempColor},...prev])
+  setProduct(defaultProductObj);
+  setTempColor([]);
+closeModal();
+};
   const onCancel = () => {
     setProduct(defaultProductObj);
     closeModal();
   };
   const renderProductList = () => {
-    return productList.map((product) => (
+    return products.map((product) => (
       <ProductCard key={product.id} product={product} />
     ));
   };
@@ -133,6 +141,8 @@ console.log(tempColor)
 
               ))}
             </div>
+
+
 
             <div className="flex items-center space-x-3">
               <Button
