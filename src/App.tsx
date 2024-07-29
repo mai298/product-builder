@@ -131,6 +131,8 @@ console.log(tempColor)
         <Modal isOpen={isOpen} closeModal={close} title="ADD A NEW PRODUCT">
           <form className="space-y-3" onSubmit={submitHandler}>
             {renderFormInputList}
+            <Select/>
+
             <div className="flex items-center my-4 space-x-2">
               {renderProductColor}
             </div>
@@ -142,7 +144,6 @@ console.log(tempColor)
 
               ))}
             </div>
-          <Select/>
 
 
             <div className="flex items-center space-x-3">

@@ -1,5 +1,5 @@
 import { v4 as uuid } from "uuid";
-import { IFormInput, IProduct } from "../interfaces";
+import { ICategory, IFormInput, IProduct } from "../interfaces";
 export const productList: IProduct[] = [
   {
     id: uuid(),
@@ -152,3 +152,39 @@ export const formInputList: IFormInput[] = [
 ];
 
 export const colors: string[] = ["#A31ACB", "#3C2A21", "#1F8A70", "#820000", "#FF0032"];
+
+export const caregories:ICategory[]=[
+
+  {
+    id: uuid(),
+    name: "Nike",
+    imgUrl:
+      "https://images.unsplash.com/photo-1614200179396-2bdb77ebf81b?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+
+
+
+  {
+    id: uuid(),
+    name: "t-shirt",
+    imgUrl:
+      "https://images.unsplash.com/photo-1614200179396-2bdb77ebf81b?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+
+
+
+  {
+    id: uuid(),
+    name: "clothes",
+    imgUrl:
+      "https://images.unsplash.com/photo-1614200179396-2bdb77ebf81b?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+
+
+  {
+    id: uuid(),
+    name: "pc-desktop",
+    imgUrl:
+      "https://images.unsplash.com/photo-1614200179396-2bdb77ebf81b?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+]
