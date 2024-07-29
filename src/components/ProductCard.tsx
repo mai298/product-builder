@@ -6,11 +6,13 @@ import { txtSlicer } from "./utils/functions";
 
 interface Iprops {
   product: IProduct;
-  setEditProduct:(product:IProduct)=>void
+  setEditProduct:(product:IProduct)=>void;
+  openEditModal:()=>void;
+
 }
 
 
-export const  ProductCard=({product,setEditProduct}: Iprops)=>{
+export const  ProductCard=({product,setEditProduct,openEditModal}: Iprops)=>{
 const { title, desc, imgUrl ,price,colors,category}=product;
 
 
@@ -27,6 +29,7 @@ const { title, desc, imgUrl ,price,colors,category}=product;
 
   const onEdit =()=>{
     setEditProduct(product);
+    openEditModal()
     }
   return (
     <div

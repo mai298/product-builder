@@ -27,7 +27,9 @@ function App() {
   const [product, setProduct] = useState<IProduct>(defaultProductObj);
   const[products,setProducts]=useState<IProduct[]>(productList);
   const [isOpen, setIsOpen] = useState(false);
-  const[editProduct,setEditProduct]=useState(defaultProductObj);
+  const [isOpenEditModal, setIsOpenEditModal] = useState(false);
+
+  const[editProduct,setEditProduct]=useState<IProduct>(defaultProductObj);
   const [tempColor, setTempColor] = useState<string[]>([]);
   const [errors, setErrors] = useState({
     title: "",
@@ -46,6 +48,22 @@ function App() {
     setIsOpen(false);
   }
 
+
+
+
+
+
+
+
+
+  // edit
+  function openEditModal() {
+    setIsOpenEditModal(true);
+  }
+
+  function closeEditModal() {
+    setIsOpenEditModal(false);
+  }
   const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = event.target;
     setProduct({
@@ -84,7 +102,7 @@ closeModal();
   };
   const renderProductList = () => {
     return products.map((product) => (
-      <ProductCard key={product.id} product={product} setEditProduct={setEditProduct} />
+      <ProductCard key={product.id} product={product} setEditProduct={setEditProduct} openEditModal={openEditModal} />
     ));
   };
 
@@ -131,7 +149,9 @@ console.log(tempColor)
         rounded-md"
       >
         {renderProductList()}
-        <Modal isOpen={isOpen} closeModal={close} title="ADD A NEW PRODUCT">
+              </div>
+{/* ADD MODAL */}
+        <Modal isOpen={isOpen} closeModal={close} title="EDIT PRODUCT">
           <form className="space-y-3" onSubmit={submitHandler}>
             {renderFormInputList}
             <Select selected={selectedCategory} setSelected={setSelectedCategory}/>
@@ -165,7 +185,62 @@ console.log(tempColor)
             </div>
           </form>
         </Modal>
-      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        {/* EDIT MODAL */}
+        <Modal isOpen={isOpenEditModal} closeModal={closeEditModal} title="ADD A NEW PRODUCT">
+          <form className="space-y-3" onSubmit={submitHandler}>
+            {renderFormInputList}
+            <Select selected={selectedCategory} setSelected={setSelectedCategory}/>
+
+            <div className="flex items-center my-4 space-x-2">
+              {renderProductColor}
+            </div>
+
+
+            <div className="flex items-center my-4 space-x-2">
+              {tempColor.map(color=>(
+                <span key={color} className="p-1 mr-1 mb-1 text-xs rounded-md text-white" style={{background:color}}>{color}</span>
+
+              ))}
+            </div>
+
+
+            <div className="flex items-center space-x-3 ">
+              <Button
+                className="bg-indigo-700  hover:bg-indigo-800"
+                type="submit"
+              >
+                Submit
+              </Button>
+              <Button
+                onClick={onCancel}
+                className="bg-gray-400 hover:bg-gray-500"
+              >
+                Cancel
+              </Button>
+            </div>
+          </form>
+        </Modal>
     </main>
   );
 }
