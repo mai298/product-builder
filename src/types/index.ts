@@ -1,0 +1,1 @@
+export type ProductName='title' |'desc'|'imgUrl'|'price';
