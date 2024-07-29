@@ -6,14 +6,12 @@ import { txtSlicer } from "./utils/functions";
 
 interface Iprops {
   product: IProduct;
+  setEditProduct:(product:IProduct)=>void
 }
 
 
-export default function ProductCard({
-  product: { title, desc, imgUrl ,price,colors,category}
-  
-}: Iprops)
-
+export const  ProductCard=({product,setEditProduct}: Iprops)=>{
+const { title, desc, imgUrl ,price,colors,category}=product;
 
 
 {
@@ -22,7 +20,14 @@ export default function ProductCard({
 
   const renderProductColor = colors.map((color) => (
     <CircleColor key={color} color={color}  />
+
   ));
+
+
+
+  const onEdit =()=>{
+    setEditProduct(product);
+    }
   return (
     <div
       className="max-w-sm md:max-w-lg mx-auto md:mx-0 border rounded-md p-2 flex flex-col space-y-3"
@@ -54,9 +59,7 @@ export default function ProductCard({
       <div className=" mt-5 flex items-center justify-between space-x-2">
       <Button
         className="bg-indigo-700"
-        onClick={() => {
-          alert("clicked");
-        }}
+        onClick={onEdit}
       >
         EDIT{" "}
       </Button>
@@ -66,4 +69,4 @@ export default function ProductCard({
     </div>
   );
 }
-
+}

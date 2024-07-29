@@ -1,6 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import { caregories, colors, formInputList, productList } from "./components/data";
-import ProductCard from "./components/ProductCard";
 import Modal from "./components/ui/Modal";
 import Button from "./components/ui/Button";
 import Input from "./components/ui/InputData";
@@ -10,6 +9,7 @@ import ErrorMsg from "./components/ErrorMsg";
 import CircleColor from "./components/CircleColor";
 import { v4 as uuid } from "uuid";
 import Select from "./components/ui/Select";
+import { ProductCard } from "./components/ProductCard";
 
 
 function App() {
@@ -27,6 +27,7 @@ function App() {
   const [product, setProduct] = useState<IProduct>(defaultProductObj);
   const[products,setProducts]=useState<IProduct[]>(productList);
   const [isOpen, setIsOpen] = useState(false);
+  const[editProduct,setEditProduct]=useState(defaultProductObj);
   const [tempColor, setTempColor] = useState<string[]>([]);
   const [errors, setErrors] = useState({
     title: "",
@@ -83,7 +84,7 @@ closeModal();
   };
   const renderProductList = () => {
     return products.map((product) => (
-      <ProductCard key={product.id} product={product} />
+      <ProductCard key={product.id} product={product} setEditProduct={setEditProduct} />
     ));
   };
 
