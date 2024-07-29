@@ -64,6 +64,27 @@ function App() {
   function closeEditModal() {
     setIsOpenEditModal(false);
   }
+
+  const onChangeEditHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    const { value, name } = event.target;
+    setProduct({
+      ...editProduct,
+      [name]: value,
+    });
+    setErrors({ ...errors, [name]: "" });
+  };
+
+
+
+
+
+
+
+
+
+
+
+
   const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = event.target;
     setProduct({
@@ -96,6 +117,48 @@ function App() {
   setTempColor([]);
 closeModal();
 };
+
+
+
+
+
+
+
+const submitEditHandler = (event: FormEvent<HTMLFormElement>): void => {
+  event.preventDefault();
+  const errors = productValidation({
+    title: product.title,
+    desc: product.desc,
+    imgUrl: product.imgUrl,
+    price: product.price,
+  });
+  console.log(errors);
+
+  const hasErrorMsg =
+    Object.values(errors).some((value) => value === "") &&
+    Object.values(errors).every((value) => value === "");
+  if (!hasErrorMsg) {
+    setErrors(errors);
+    return;
+  }
+
+  setProducts(prev=>[{...product,id:uuid(),colors:tempColor,category:selectedCategory},...prev])
+setProduct(defaultProductObj);
+setTempColor([]);
+closeModal();
+};
+
+
+
+
+
+
+
+
+
+
+
+
   const onCancel = () => {
     setProduct(defaultProductObj);
     closeModal();
@@ -151,7 +214,7 @@ console.log(tempColor)
         {renderProductList()}
               </div>
 {/* ADD MODAL */}
-        <Modal isOpen={isOpen} closeModal={close} title="EDIT PRODUCT">
+        <Modal isOpen={isOpen} closeModal={close} title="ADD A NEW PRODUCT">
           <form className="space-y-3" onSubmit={submitHandler}>
             {renderFormInputList}
             <Select selected={selectedCategory} setSelected={setSelectedCategory}/>
@@ -207,22 +270,46 @@ console.log(tempColor)
 
 
         {/* EDIT MODAL */}
-        <Modal isOpen={isOpenEditModal} closeModal={closeEditModal} title="ADD A NEW PRODUCT">
-          <form className="space-y-3" onSubmit={submitHandler}>
-            {renderFormInputList}
-            <Select selected={selectedCategory} setSelected={setSelectedCategory}/>
+        <Modal isOpen={isOpenEditModal} closeModal={closeEditModal} title="Edit PRODUCT">
+          <form className="space-y-3" onSubmit={submitEditHandler}>
+           
+          <div className="flex flex-col" >
+      <label
+        htmlFor={'title'}
+        className="mb-[2px] text-sm font-medium text-gray-700"
+      >
+      product title
+      </label>
+      <Input
+        type="text"
+        id={'title'}
+        name={'title'}
+        value={editProduct['title']}
+        onChange={onChangeEditHandler}
+      />
+      <ErrorMsg msg={''} />
+    </div>
+           
+           
+           
+           
+           
+           
+           
+            {/* {renderFormInputList} */}
+            {/* <Select selected={selectedCategory} setSelected={setSelectedCategory}/>
 
             <div className="flex items-center my-4 space-x-2">
               {renderProductColor}
-            </div>
+            </div> */}
 
 
-            <div className="flex items-center my-4 space-x-2">
+            {/* <div className="flex items-center my-4 space-x-2">
               {tempColor.map(color=>(
                 <span key={color} className="p-1 mr-1 mb-1 text-xs rounded-md text-white" style={{background:color}}>{color}</span>
 
               ))}
-            </div>
+            </div> */}
 
 
             <div className="flex items-center space-x-3 ">
