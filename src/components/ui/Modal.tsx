@@ -9,28 +9,8 @@ interface Iprops{
 
 }
 export default function Modal({isOpen,closeModal,title,children}:Iprops) {
-  // const [isOpen, setIsOpen] = useState(true);
-
-  // function open() {
-  //   setIsOpen(true);
-  // }
-
-  // function close() {
-  //   setIsOpen(false);
-  // }
-
   return (
     <>
-    {/* <div className="fixed inset-0 flex items-center justify-center">
-      <Button
-        onClick={open}
-        className="bg-indigo-500 rounded-md
-          px-4 py-2 text-sm font-medium
-           text-white"
-      >
-        Open dialog
-      </Button>
-      </div> */}
 
 <Transition appear show={isOpen} as={Fragment}>
       <Dialog

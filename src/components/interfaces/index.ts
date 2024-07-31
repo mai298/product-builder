@@ -16,7 +16,7 @@ export interface IProduct {
 
 export interface IFormInput{
   id:string;
-  name:ProductName;
+  name:ProductName; //Must be one of 'title', 'desc', 'imgUrl', or 'price'
   label:string;
   type:string
 }

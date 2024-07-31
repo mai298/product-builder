@@ -10,7 +10,7 @@ interface Iprops {
   setEditProductIdx: (value: number) => void;
   idx: number;
   openEditModal: () => void;
-  openConfirmModal:()=>void;
+  openConfirmModal: () => void;
 }
 
 export const ProductCard = ({
@@ -34,11 +34,10 @@ export const ProductCard = ({
       setEditProductIdx(idx);
     };
 
-
-    const onRemove=()=>{
+    const onRemove = () => {
       setEditProduct(product);
       openConfirmModal();
-    }
+    };
     return (
       <div className="max-w-sm md:max-w-lg mx-auto md:mx-0 border rounded-md p-2 flex flex-col space-y-3">
         <Image
@@ -51,11 +50,6 @@ export const ProductCard = ({
         <div className="flex items-center my-4 space-x-2">
           {renderProductColor}
         </div>
-        {/* <div className="flex items-center my-4 space-x-2">
-        <span className="w-5 h-5 cursor-pointer bg-indigo-600 rounded-full" />
-        <span className="w-5 h-5 cursor-pointer bg-yellow-600 rounded-full" />
-        <span className="w-5 h-5 cursor-pointer bg-red-600 rounded-full" />
-      </div> */}
 
         <div className="flex items-center justify-between ">
           <span>${price}</span>
