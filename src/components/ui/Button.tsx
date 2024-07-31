@@ -9,7 +9,7 @@ interface Iprops extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 export default function Button({ children, className,width='w-full',...rest }: Iprops) {
   return (
-    <button className={`${className} ${width} onClick rounded-md text-white  p-2 w-full mb-5`} {...rest}>
+    <button className={`${className} ${width}  rounded  py-2 px-4 text-sm text-white`} {...rest}>
       {children}
     </button>
   );

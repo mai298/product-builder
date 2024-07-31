@@ -6,7 +6,7 @@ import { caregories } from '../data'
 import { ICategory } from '../interfaces'
 
 interface Iprops{
-                    selected:ICategory;
+                    selected:{name:string,imgUrl:string};
                     setSelected:(category:ICategory)=>void;
 }
 export default function Select({selected,setSelected}:Iprops) {
